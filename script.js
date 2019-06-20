@@ -1,24 +1,32 @@
-// var links = [
-//     "https://pawhurr.github.io/TriviaGame/", 
-//     "https://pawhurr.github.io/Unit-4-Game/", 
-//     "https://pawhurr.github.io/Project1-DataBite/",
-//     "https://pawhurr.github.io/Psychic-Game/",
-//     "https://pawhurr.github.io/Giphy/",
-//     "https://pawhurr.github.io/Train-Scheduler/"]
-// var source = [ 
-//     "images/the_office_logo.jpg",
-//     "images/redcrystal.jpg",
-//     "images/transparent-logo2.png",
-//     "http://lorempixel.com/output/abstract-q-c-640-480-1.jpg",
-//     "images/Title.png",
-//     "images/train.png"]
+var didScroll;
+var lastScrollTop = 0;
+var delta = 5;
+var navbarHeight = $('.navMove').outerHeight();
 
-//     for (var i = 0; i < links.length; i++) {
-        
-    // }
+$(window).scroll(function(event){
+    didScroll = true;
+});
 
-    $(".flipcard").flip({
-        axis: 'y',
-        trigger: 'hover'
-      });
+setInterval(function() {
+    if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+    }
+}, 250);
 
+function hasScrolled() {
+    var st = $(this).scrollTop();
+    
+    if(Math.abs(lastScrollTop - st) <= delta)
+        return;
+    
+    if (st > lastScrollTop && st > navbarHeight){
+        $('.navMove').removeClass('nav-down').addClass('nav-up');
+    } else {
+        if(st + $(window).height() < $(document).height()) {
+            $('.navMove').removeClass('nav-up').addClass('nav-down');
+        }
+    }
+    
+    lastScrollTop = st;
+}
