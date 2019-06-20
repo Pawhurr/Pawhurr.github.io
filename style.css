@@ -1,0 +1,42 @@
+.picCont {
+    overflow: hidden;
+}
+
+.infoTrap {
+    text-align: right;
+    padding: 5px;
+    width: 150px;
+    height: 100px;
+    transform: skew(-20deg);
+    background: #17bebb;
+    position: absolute;
+    z-index: 1;
+    left: -5%;
+    top: 50%;
+    opacity: 0;
+    transition: opacity .6s, width .6s;
+}
+
+.infoTrap p {
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px whitesmoke;
+}
+
+.portPic {
+    border: inset #17bebb 5px;
+    border-radius: 5px;
+}
+
+.portPic:hover {
+    opacity: .5;
+}
+
+.portPic:hover + .infoTrap, .infoTrap:hover {
+    width: 75%;
+    opacity: 1;
+    filter: drop-shadow(0px 0px 10px rgba(0,0,0,.5));
+}
+
+.portLink {
+    color: black;
+}
